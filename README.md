@@ -33,7 +33,7 @@ console.log('go to http://localhost:8000' + server.url('cat.png'));
 With [sublevels](https://github.com/dominictarr/level-sublevel) you can e.g.
 give a plugin or a user only access to a part of the database so they can't
 do anything harmful. The location in the sublevel tree is reflected in the
-resulting url.
+resulting public url.
 
 ```js
 var Server = require('level-serve');
