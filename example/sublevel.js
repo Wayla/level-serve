@@ -4,7 +4,7 @@ var http = require('http');
 var SubLevel = require('level-sublevel');
 var fs = require('fs');
 
-// initialize the db and server and give them sublevels
+// initialize the db and give it sublevels
 var db = level(__dirname + '/.sublevel-db', { valueEncoding: 'binary' });
 SubLevel(db);
 
