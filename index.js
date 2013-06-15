@@ -4,6 +4,7 @@
 
 var Store = require('level-store');
 var debug = require('debug')('level-serve');
+var mime = require('simple-mime')('application/octet-stream');
 
 /**
  * Expose `Serve`.
@@ -61,7 +62,7 @@ function serve (req, res, error) {
     if (err) return error(err);
     if (!exists) return notFound();
 
-    res.writeHead(200, { 'Content-Type': 'image/png' });
+    res.writeHead(200, { 'Content-Type': mime(query.id) });
     store.createReadStream(query.id).pipe(res);
   });
 };

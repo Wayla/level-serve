@@ -7,10 +7,10 @@ var fs = require('fs');
 var db = level(__dirname + '/.server-db', { valueEncoding: 'binary' });
 
 // store cat
-var ws = Store(db).createWriteStream('cat');
+var ws = Store(db).createWriteStream('cat.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve
 http.createServer(Server(db).serve).listen(8000);
 
-console.log('go to http://localhost:8000/files/cat');
+console.log('go to http://localhost:8000/files/cat.png');
