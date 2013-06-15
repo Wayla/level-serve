@@ -26,6 +26,10 @@ function Server (db) {
   this.serve = serve.bind(this);
 }
 
+Server.prototype.createWriteStream = function (id) {
+  return Store(this.db).createWriteStream(id);
+};
+
 /**
  * HTTP handler.
  *
