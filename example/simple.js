@@ -7,10 +7,10 @@ var images = serve(db); // could be multilevel client
 fs.createReadStream('foo.png').pipe(images.createWriteStream('foo.png'));
 
 // get link
-images.linkTo('foo.png'); // -> /images/foobar
+images.linkTo('foo.png'); // -> /files/foobar.png
 // it's aware of sublevels
 userImages = serve(db.sublevel('user1'));
-userImages.linkTo('foo.png'); // -> /images/user1/foobar
+userImages.linkTo('foo.png'); // -> /files/user1/foobar
 
 // SERVER
 var level = require('level');

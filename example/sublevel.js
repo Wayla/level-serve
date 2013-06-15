@@ -8,11 +8,12 @@ var fs = require('fs');
 var db = level(__dirname + '/.sublevel-db', { valueEncoding: 'binary' });
 SubLevel(db);
 
-// store cats
+// cat from sublevel "cats" will be served at /files/cats/white.png
 var sub = db.sublevel('cats');
 var ws1 = Server(sub).createWriteStream('white.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws1);
 
+// cat from sublevel "cool"."cats" will be served at /files/cool/cats/white.png
 sub = db.sublevel('cool').sublevel('cats');
 var ws2 = Server(sub).createWriteStream('white.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws2);
