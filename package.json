@@ -9,7 +9,7 @@
   "homepage": "https://github.com/juliangruber/level-serve",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tape test/*.js"
   },
   "dependencies": {
     "level-store": "~3.3.0",
@@ -17,7 +17,6 @@
     "simple-mime": "0.0.8"
   },
   "devDependencies": {
-    "tap": "*",
     "level": "~0.10.0",
     "tape": "~1.0.4",
     "level-sublevel": "~4.7.0"
