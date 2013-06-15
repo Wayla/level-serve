@@ -22,7 +22,6 @@ module.exports.parseURL = parseURL;
 function Server (db) {
   if (!(this instanceof Server)) return new Server(db);
   this.db = db;
-
   this.serve = serve.bind(this);
 }
 
@@ -35,6 +34,26 @@ function Server (db) {
 
 Server.prototype.createWriteStream = function (id) {
   return Store(this.db).createWriteStream(id);
+};
+
+/**
+ * Get the url of file `id`, respecting sublevels.
+ *
+ * @param {String} id
+ * @return {String}
+ */
+
+Server.prototype.url = function (id) {
+  var url = '/files/';
+  var sublevels = '';
+  var db = this.db;
+
+  while (db._parent && db._parent != db) {
+    sublevels = db._prefix + '/' + sublevels;
+    db = db._parent;
+  }
+
+  return url + sublevels + id;
 };
 
 /**

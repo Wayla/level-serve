@@ -4,21 +4,17 @@ var http = require('http');
 var SubLevel = require('level-sublevel');
 var fs = require('fs');
 
-// initialize the db and give it sublevels
+// initialize the db and server and give them sublevels
 var db = level(__dirname + '/.sublevel-db', { valueEncoding: 'binary' });
 SubLevel(db);
 
-// cat from sublevel "cats" will be served at /files/cats/white.png
-var sub = db.sublevel('cats');
-var ws1 = Server(sub).createWriteStream('white.png');
-fs.createReadStream(__dirname + '/cat.png').pipe(ws1);
+// initialize server for sublevel
+var server = Server(db.sublevel('cool').sublevel('cats'));
 
 // cat from sublevel "cool"."cats" will be served at /files/cool/cats/white.png
-sub = db.sublevel('cool').sublevel('cats');
-var ws2 = Server(sub).createWriteStream('white.png');
-fs.createReadStream(__dirname + '/cat.png').pipe(ws2);
+var ws = server.createWriteStream('white.png');
+fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
-// serve cats
+// serve cat
 http.createServer(Server(db).serve).listen(8000);
-console.log('go to http://localhost:8000/files/cats/white.png');
-console.log('or to http://localhost:8000/files/cool/cats/white.png');
+console.log('or to http://localhost:8000' + server.url('white.png'));
