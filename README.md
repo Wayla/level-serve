@@ -6,6 +6,9 @@ Streaming static file server based on
 
 ## Usage
 
+Store and serve a nice [cat picture](https://github.com/maxogden/cats) at
+`/files/cat.png`.
+
 ```js
 var Server = require('level-serve');
 var level = require('level');
@@ -26,6 +29,11 @@ console.log('go to http://localhost:8000/files/cat.png');
 ```
 
 ## Sublevels
+
+With [sublevels](https://github.com/dominictarr/level-sublevel) you can e.g.
+give a plugin or a user only access to a part of the database so they can't
+do anything harmful. The location in the sublevel tree is reflected in the
+resulting url.
 
 ```js
 var Server = require('level-serve');
@@ -58,18 +66,19 @@ console.log('or to http://localhost:8000/files/cool/cats/white.png');
 
 `/images/ (sublevels /) file-id `
 
-If you give the file an extension it will be served with the correct mime type.
-
 ## API
 
-## Server(db)
+### Server(db)
 
 Make sure that `db` has been opened with `valueEncoding: 'binary'` if you want
 to serve binary files.
 
-## Server#serve(req, res[, next])
+### Server#serve(req, res[, next])
 
-## Server#createWriteStream(file-id)
+### Server#createWriteStream(file-id)
+
+Store a file under `file-id`. If you give `file-id` an extension it will be
+served with the correct mime type.
 
 ## Installation
 
