@@ -42,7 +42,7 @@ var http = require('http');
 var SubLevel = require('level-sublevel');
 var fs = require('fs');
 
-// initialize the db and server and give them sublevels
+// initialize the db and give it sublevels
 var db = level(__dirname + '/.sublevel-db', { valueEncoding: 'binary' });
 SubLevel(db);
 
@@ -92,12 +92,6 @@ With [npm](http://npmjs.org) do
 ```bash
 $ npm install level-serve
 ```
-
-## TODO
-
-* stream binary data from leveldb to clients over http
-* on receive: create simple version for mobile
-* imageoptim
 
 ## License
 
