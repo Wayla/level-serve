@@ -26,6 +26,13 @@ function Server (db) {
   this.serve = serve.bind(this);
 }
 
+/**
+ * Store a file under `id`.
+ *
+ * @param {Number} id
+ * @return {Stream}
+ */
+
 Server.prototype.createWriteStream = function (id) {
   return Store(this.db).createWriteStream(id);
 };
