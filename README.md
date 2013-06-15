@@ -75,6 +75,9 @@ to serve binary files.
 
 ### Server#serve(req, res[, next])
 
+HTTP request handler. Pass this to `http.createServer()` or `express` for
+example.
+
 ### Server#createWriteStream(file-id)
 
 Store a file under `file-id`. If you give `file-id` an extension it will be
