@@ -1,0 +1,33 @@
+{
+  "name": "level-serve",
+  "description": "",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/level-serve.git"
+  },
+  "homepage": "https://github.com/juliangruber/level-serve",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "dependencies": {
+    "level-store": "~3.3.0",
+    "debug": "~0.7.2"
+  },
+  "devDependencies": {
+    "tap": "*",
+    "level": "~0.10.0",
+    "tape": "~1.0.4",
+    "level-sublevel": "~4.7.0"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
