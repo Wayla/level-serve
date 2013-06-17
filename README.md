@@ -82,6 +82,11 @@ example.
 Store a file under `file-id`. If you give `file-id` an extension it will be
 served with the correct mime type.
 
+### Server#write(file-id, data[, cb])
+
+Store `data` as `file-id`. Convenience method that exposes the write stream
+in a async api.
+
 ### Server#url(file-id)
 
 Get the url of `file-id`, respecting sublevels.
