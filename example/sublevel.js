@@ -16,5 +16,8 @@ var ws = server.createWriteStream('white.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve cat
-http.createServer(Server(db).serve).listen(8000);
+var server2 = Server(db);
+http.createServer(function (req, res) {
+  server2.serve(req, res);
+}).listen(8000);
 console.log('or to http://localhost:8000' + server.url('white.png'));

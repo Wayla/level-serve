@@ -22,7 +22,6 @@ module.exports.parseURL = parseURL;
 function Server (db) {
   if (!(this instanceof Server)) return new Server(db);
   this.db = db;
-  this.serve = serve.bind(this);
 }
 
 /**
@@ -59,8 +58,6 @@ Server.prototype.url = function (id) {
 /**
  * HTTP handler.
  *
- * Exposed as Server#serve.
- *
  * URLs:
  *
  *   /images/(:sublevel/)*:id
@@ -71,30 +68,42 @@ Server.prototype.url = function (id) {
  * @api private
  */
 
-function serve (req, res, error) {
+Server.prototype.serve = function (req, res, error) {
   // create handlers
   if (!error) error = createError(req, res);
   var notFound = createNotFound(req, res);
 
   // send favicon
-  if (req.url == '/favicon.ico') return res.end();
+  if (req.url == '/favicon.ico') {
+    res.end();
+  } else {
+    // parse url
+    var query = parseURL(req.url);
 
-  // parse url
-  var query = parseURL(req.url);
-  if (!query) return notFound();
-  debug('query: %j', query);
+    if (!query) {
+      notFound();
+    } else {
+      debug('query: %j', query);
 
-  // get store
-  var store = Store(resolveSubLevel(this.db, query.sublevels));
+      // get store
+      var store = Store(resolveSubLevel(this.db, query.sublevels));
 
-  // send appropriate response
-  store.exists(query.id, function (err, exists) {
-    if (err) return error(err);
-    if (!exists) return notFound();
+      // send appropriate response
+      var found = false;
+      var rs = store.createReadStream(query.id);
 
-    res.writeHead(200, { 'Content-Type': mime(query.id) });
-    store.createReadStream(query.id).pipe(res);
-  });
+      rs.once('data', function (data) {
+        found = true;
+        res.writeHead(200, { 'Content-Type': mime(query.id) });
+      });
+      rs.on('end', function () {
+        if (!found) notFound();
+      });
+      rs.on('error', error);
+
+      rs.pipe(res);
+    }
+  }
 };
 
 /**
@@ -144,11 +153,12 @@ function createNotFound (req, res) {
  */
 
 function parseURL (url) {
-  var segs = url.split('/').slice(1);
-  if (segs[0] != 'files' || !segs[1]) return;
+  var segs = url.split('/');
+  if (segs[1] != 'files' || !segs[2]) return;
 
   return {
     id: segs[segs.length - 1],
-    sublevels: segs.slice(1, segs.length - 1)
+    sublevels: segs.slice(2, segs.length - 1)
   };
 }
+

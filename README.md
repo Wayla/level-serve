@@ -24,7 +24,7 @@ var ws = server.createWriteStream('cat.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve cat
-http.createServer(server.serve).listen(8000);
+http.createServer(server.serve.bind(server)).listen(8000);
 console.log('go to http://localhost:8000' + server.url('cat.png'));
 ```
 
@@ -54,7 +54,8 @@ var ws = server.createWriteStream('white.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve cat
-http.createServer(Server(db).serve).listen(8000);
+var dbServer = Server(db);
+http.createServer(dbServer.serve.bind(dbServer)).listen(8000);
 console.log('or to http://localhost:8000' + server.url('white.png'));
 ```
 

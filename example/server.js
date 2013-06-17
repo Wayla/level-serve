@@ -12,5 +12,7 @@ var ws = server.createWriteStream('cat.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve cat
-http.createServer(server.serve).listen(8000);
+http.createServer(function (req, res) {
+  server.serve(req, res);
+}).listen(8000);
 console.log('go to http://localhost:8000' + server.url('cat.png'));
