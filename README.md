@@ -90,10 +90,10 @@ example.
 Store a file under `file-id`. If you give `file-id` an extension it will be
 served with the correct mime type.
 
-### Server#write(file-id, data[, cb])
+### Server#store(file-id, data[, cb])
 
 Store `data` as `file-id`. Convenience method that exposes the write stream
-in a async api.
+in an async api.
 
 ### Server#url(file-id)
 
