@@ -26,7 +26,7 @@ var ws = server.createWriteStream('cat.png');
 fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 
 // serve cat
-http.createServer(server.serve.bind(server)).listen(8000);
+http.createServer(server.handle.bind(server)).listen(8000);
 console.log('go to http://localhost:8000' + server.url('cat.png'));
 ```
 
@@ -80,7 +80,7 @@ Generate URLs using `Server#url`.
 Make sure that `db` has been opened with `valueEncoding: 'binary'` if you want
 to serve binary files.
 
-### Server#serve(req, res[, next])
+### Server#handle(req, res[, next])
 
 HTTP request handler. Pass this to `http.createServer()` or `express` for
 example.

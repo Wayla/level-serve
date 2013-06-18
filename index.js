@@ -85,6 +85,7 @@ Server.prototype.url = function (id) {
  * @api private
  */
 
+Server.prototype.handle =
 Server.prototype.serve = function (req, res, error) {
   // create handlers
   if (!error) error = createError(req, res);

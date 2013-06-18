@@ -18,6 +18,6 @@ fs.createReadStream(__dirname + '/cat.png').pipe(ws);
 // serve cat
 var dbServer = Server(db);
 http.createServer(function (req, res) {
-  dbServer.serve(req, res);
+  dbServer.handle(req, res);
 }).listen(8000);
 console.log('or to http://localhost:8000' + dbServer.url('white.png'));
