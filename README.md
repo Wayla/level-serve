@@ -4,6 +4,8 @@
 Streaming static file server based on
 [LevelDB](https://github.com/rvagg/node-levelup).
 
+[![build status](https://secure.travis-ci.org/Wayla/level-serve.png)](http://travis-ci.org/Wayla/level-serve)
+
 ## Usage
 
 Store and serve a nice [cat picture](https://github.com/maxogden/cats) at
