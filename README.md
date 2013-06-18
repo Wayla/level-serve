@@ -37,6 +37,12 @@ give a plugin or a user only access to a part of the database so they can't
 do anything harmful. The location in the sublevel tree is reflected in the
 resulting public url.
 
+This concept involves **two instances** of `level-serve`.
+
+* One is read only and serves the whole database over http.
+* The other one is given to clients / plugins and they can write whatever they
+want, however only see their own section of the db, their sublevel.
+
 ```js
 var Server = require('level-serve');
 var level = require('level');
