@@ -1,7 +1,7 @@
 {
   "name": "level-serve",
-  "description": "",
-  "version": "0.0.0",
+  "description": "Streaming static file server based on LevelDB",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/level-serve.git"
