@@ -22,12 +22,16 @@
     "level-sublevel": "~4.7.0"
   },
   "keywords": [
-    ""
+    "static", "file", "server", "leveldb", "levelup", "streaming"
   ],
   "author": {
-    "name": "Julian Gruber",
-    "email": "mail@juliangruber.com",
-    "url": "http://juliangruber.com"
+    "name": "Wayla",
+    "email": "data@wayla.com",
+    "url": "http://wayla.com"
+  },
+  "contributors": {
+    "Wayla": "data@wayla.com",
+    "Julian Gruber": "julian@wayla.com"
   },
   "license": "MIT"
 }
