@@ -1,12 +1,12 @@
 {
   "name": "level-serve",
   "description": "Streaming static file server based on LevelDB",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/juliangruber/level-serve.git"
+    "url": "git://github.com/Wayla/level-serve.git"
   },
-  "homepage": "https://github.com/juliangruber/level-serve",
+  "homepage": "https://github.com/Wayla/level-serve",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js"
