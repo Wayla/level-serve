@@ -106,20 +106,37 @@ Server.prototype.serve = function (req, res, error) {
       // get store
       var store = Store(resolveSubLevel(this.db, query.sublevels));
 
-      // send appropriate response
+      // get stat
       var found = false;
-      var rs = store.createReadStream(query.id);
-
-      rs.once('data', function (data) {
+      var rs = store.createReadStream(query.id, {
+        limit: 1,
+        reverse: false,
+        index: true
+      });
+      // TODO limit doesn't work
+      rs.once('data', function (obj) {
         found = true;
-        res.writeHead(200, { 'Content-Type': mime(query.id) });
+        send(Number(obj.index));
       });
       rs.on('end', function () {
         if (!found) notFound();
       });
       rs.on('error', error);
 
-      rs.pipe(res);
+      function send (mtime) {
+        res.setHeader('last-modified', new Date(mtime).toUTCString());
+        res.setHeader('Cache-Control', 'max-age=86400');
+        
+        // early 304 response
+        var ts = req.headers && Date.parse(req.headers['if-modified-since']);
+        if (ts <= mtime) {
+          res.statusCode = 304;
+          res.end();
+          return;
+        }
+        
+        store.createReadStream(query.id).pipe(res);
+      }
     }
   }
 };

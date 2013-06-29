@@ -1,7 +1,7 @@
 {
   "name": "level-serve",
   "description": "Streaming static file server based on LevelDB",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/Wayla/level-serve.git"
@@ -12,7 +12,7 @@
     "test": "tape test/*.js"
   },
   "dependencies": {
-    "level-store": "~3.4.0",
+    "level-store": "~3.4.1",
     "debug": "~0.7.2",
     "simple-mime": "0.0.8"
   },

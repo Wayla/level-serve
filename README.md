@@ -30,6 +30,10 @@ http.createServer(server.handle.bind(server)).listen(8000);
 console.log('go to http://localhost:8000' + server.url('cat.png'));
 ```
 
+## Caching
+
+For now resources are cached for 1d on HTTP level. Proper caching is to be implemented.
+
 ## Sublevels
 
 With [sublevels](https://github.com/dominictarr/level-sublevel) you can e.g.
