@@ -12,7 +12,7 @@
     "test": "tape test/*.js"
   },
   "dependencies": {
-    "level-store": "~3.3.0",
+    "level-store": "~3.4.0",
     "debug": "~0.7.2",
     "simple-mime": "0.0.8"
   },
