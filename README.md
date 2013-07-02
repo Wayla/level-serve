@@ -89,6 +89,9 @@ to serve binary files.
 HTTP request handler. Pass this to `http.createServer()` or `express` for
 example.
 
+If `next` is passed it will be called when errors happen or a requested file
+cannot be found.
+
 ### Server#createWriteStream(file-id)
 
 Store a file under `file-id`. If you give `file-id` an extension it will be

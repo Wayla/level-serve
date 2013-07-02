@@ -89,7 +89,7 @@ Server.prototype.handle =
 Server.prototype.serve = function (req, res, error) {
   // create handlers
   if (!error) error = createError(req, res);
-  var notFound = createNotFound(req, res);
+  var notFound = createNotFound(req, res, error);
 
   // send favicon
   if (req.url == '/favicon.ico') {
@@ -176,10 +176,16 @@ function createError (req, res) {
  * HTTP 404 handler.
  */
 
-function createNotFound (req, res) {
-  return function () {
-    res.writeHead(404);
-    res.end('File not found.');
+function createNotFound (req, res, error) {
+  if (error) {
+    return function () {
+      error(new Error('File not found.'));
+    };
+  } else {
+    return function () {
+      res.writeHead(404);
+      res.end('File not found.');
+    }
   }
 }
 
