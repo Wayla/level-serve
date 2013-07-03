@@ -113,7 +113,6 @@ Server.prototype.serve = function (req, res, error) {
         reverse: false,
         index: true
       });
-      // TODO limit doesn't work
       rs.once('data', function (obj) {
         found = true;
         send(Number(obj.index));
@@ -124,6 +123,7 @@ Server.prototype.serve = function (req, res, error) {
       rs.on('error', error);
 
       function send (mtime) {
+        res.setHeader('Content-Type', mime(query.id));
         res.setHeader('last-modified', new Date(mtime).toUTCString());
         res.setHeader('Cache-Control', 'max-age=86400');
         
