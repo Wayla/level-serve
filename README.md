@@ -32,7 +32,8 @@ console.log('go to http://localhost:8000' + server.url('cat.png'));
 
 ## Caching
 
-For now resources are cached for 1d on HTTP level. Proper caching is to be implemented.
+[ETags](http://en.wikipedia.org/wiki/HTTP_ETag) are used to save bandwidth
+and reduce load.
 
 ## Sublevels
 

@@ -124,12 +124,11 @@ Server.prototype.serve = function (req, res, error) {
 
       function send (mtime) {
         res.setHeader('Content-Type', mime(query.id));
-        res.setHeader('last-modified', new Date(mtime).toUTCString());
-        res.setHeader('Cache-Control', 'max-age=86400');
+        res.setHeader('ETag', mtime);
         
         // early 304 response
-        var ts = req.headers && Date.parse(req.headers['if-modified-since']);
-        if (ts <= mtime) {
+        var etag = req.headers && req.headers['if-none-match'];
+        if (etag == mtime) {
           res.statusCode = 304;
           res.end();
           return;
