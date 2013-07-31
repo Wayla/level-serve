@@ -35,6 +35,10 @@ Server.prototype.createWriteStream = function (id) {
   return Store(this.db).createWriteStream(id);
 };
 
+Server.prototype.createReadStream = function (id) {
+	  return Store(this.db).createReadStream(id);
+};
+
 Server.prototype.store = function (id, data, fn) {
   var called = false;
   var ws = this.createWriteStream(id);
