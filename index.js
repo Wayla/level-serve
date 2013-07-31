@@ -35,8 +35,15 @@ Server.prototype.createWriteStream = function (id) {
   return Store(this.db).createWriteStream(id);
 };
 
+/**
+* Get a value stored under `id`
+*
+* @param {Number} id
+* @return {Stream}
+*/ 
+
 Server.prototype.createReadStream = function (id) {
-	  return Store(this.db).createReadStream(id);
+  return Store(this.db).createReadStream(id);
 };
 
 Server.prototype.store = function (id, data, fn) {

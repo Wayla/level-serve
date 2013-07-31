@@ -98,6 +98,10 @@ cannot be found.
 Store a file under `file-id`. If you give `file-id` an extension it will be
 served with the correct mime type.
 
+### Server#createReadStream(file-id)
+
+Retrieve a file stored under `file-id`. 
+
 ### Server#store(file-id, data[, cb])
 
 Store `data` as `file-id`. Convenience method that exposes the write stream
