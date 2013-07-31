@@ -20,7 +20,7 @@ test('Test createReadStream', function (t) {
     rs.pipe(fws);
 
     rs.on('data', function(data){
-  	datalength += data.length;
+      datalength += data.length;
     });
 
     rs.on('end', function(data){
