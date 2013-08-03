@@ -36,10 +36,10 @@ Server.prototype.createWriteStream = function (id) {
 };
 
 /**
-* Get a value stored under `id`
-*
-* @param {Number} id
-* @return {Stream}
+ * Get a value stored under `id`
+ *
+ * @param {Number} id
+ * @return {Stream}
 */ 
 
 Server.prototype.createReadStream = function (id) {
