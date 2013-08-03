@@ -40,7 +40,7 @@ Server.prototype.createWriteStream = function (id) {
  *
  * @param {Number} id
  * @return {Stream}
-*/ 
+ */ 
 
 Server.prototype.createReadStream = function (id) {
   return Store(this.db).createReadStream(id);
